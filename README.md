@@ -1,1 +1,1 @@
-# streoto-hakkreykjavik
+# slys prediction
