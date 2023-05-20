@@ -1,5 +1,6 @@
 import numpy as np
 import math as m
+import csv
 
 
 hiti = {
@@ -302,5 +303,13 @@ def readcsv(file):
 
 readcsv(filename)
 print(vindur)
-print("\n\n")
+print("\n")
 print(hiti)
+with open('accidents\\vindur.csv', 'w') as f:
+    for key in vindur.keys():
+        f.write("%s,%s\n"%(key,vindur[key]))
+
+with open('accidents\\hiti.csv', 'w') as b:
+    for key in hiti.keys():
+        b.write("%s,%s\n"%(key,hiti[key]))
+
