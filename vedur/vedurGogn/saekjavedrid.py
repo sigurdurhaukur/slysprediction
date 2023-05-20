@@ -2,7 +2,7 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 import io
-import os
+import glob
 
 stodvarlisti = []
 
@@ -22,3 +22,16 @@ for i in range(0, len(stodvarlisti)):
     # Write to the file
     filename = f'stod{i+1}.csv'
     data[['ár', 'mán', 't']].to_csv(filename, index=False)
+
+# Specify the pattern matching for CSV files
+file_pattern = "*.csv" 
+
+# Get a list of all CSV files
+csv_files = glob.glob(file_pattern)
+
+for file in csv_files:
+    # Read CSV file, skipping the first 2 rows
+    df = pd.read_csv(file, skiprows=2)
+    
+    # Write the data back to CSV
+    df.to_csv(file, index=False)
