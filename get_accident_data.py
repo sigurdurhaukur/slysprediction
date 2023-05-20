@@ -72,6 +72,10 @@ def get_data(
     except Exception as e:
         print("Error", e)
 
+        if id < max_requests:
+            print()
+            get_data(dates, url, id + 1, max_requests)
+
 
 def main():
     start_time = time.time()
