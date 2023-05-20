@@ -51,27 +51,9 @@ def get_temp_and_wind_speed():
     return average_temperature, average_wind_speed
 
 
-# Define the model architecture
-class IslModel(nn.Module):
-    def __init__(self):
-        super(IslModel, self).__init__()
-        self.linear = nn.Linear(1, 1)
-
-    def forward(self, x):
-        out = self.linear(x)
-        return out
-
-
-# Create an instance of the model
-isl_model = IslModel()
-
-# Load the state dictionary into the model
-state_dict = torch.load("../models/isl-model.pt")
-isl_model.load_state_dict(state_dict)
-
-
-# Load the use model
+# Load the models
 usa_model = joblib.load("../models/usa-model.pt")
+isl_model = joblib.load("../models/isl-model.pt")
 
 app = FastAPI()
 
@@ -94,11 +76,9 @@ def predict_isl():
     ).reshape(-1, 1)
     standardized_new_data = (average_temperature - x_mean) / x_std
 
-    isl_model.eval()
-
-    # Make a prediction based off of the current average temperature
-    prediction = isl_model(standardized_new_data)
-    prediction_value = prediction.item()
+    # predict
+    prediction = isl_model.predict(standardized_new_data)
+    prediction_value = prediction[0].item()
 
     # average accidents per month in Iceland is 246
     percentage_deviation = (prediction_value - 246) / 246 * 100
