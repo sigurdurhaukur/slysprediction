@@ -9,24 +9,22 @@ os.makedirs(directory, exist_ok=True)
 wfilename = 'allarStodvar.csv'
 
 all_files = glob.glob("stod*.csv")
-output_data = pd.DataFrame(columns=['ár', 'mán', 't'], dtype=int)  # Create an empty DataFrame for output
+
+# Concatenate all the CSV files into a single DataFrame
+data_list = []
+for filename in all_files:
+    data = pd.read_csv(filename, delimiter=',', names=['ár', 'mán', 't'], skiprows=1)
+    data_list.append(data)
+all_data = pd.concat(data_list)
+
+output_data = pd.DataFrame(columns=['ár', 'mán', 't'],)  # Create an empty DataFrame for output
 
 while year < 2024:
     yearly_data = []
-    for month in range(1, 13):  
-        total_temp = 0
-        count = 0
-        
-        for filename in all_files:
-            data = pd.read_csv(filename, delimiter=',', names=['ár', 'mán', 't'])
-            
-            filtered_data = data.query('ár == @year and mán == @month')
-            
-            t_values = filtered_data['t'].dropna()
-            total_temp += t_values.sum()
-            count += len(t_values)
-
-        avg_temperature = total_temp / count if count > 0 else None
+    for month in range(1, 13):
+        # Filter data by year and month and calculate the average temperature
+        filtered_data = all_data.query('ár == @year and mán == @month')
+        avg_temperature = filtered_data['t'].mean()
         yearly_data.append({'ár': year, 'mán': month, 't': avg_temperature})
 
     year_data_df = pd.DataFrame(yearly_data, columns=['ár', 'mán', 't'])
