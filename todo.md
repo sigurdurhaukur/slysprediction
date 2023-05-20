@@ -9,7 +9,7 @@
 
 ## US model
 
-- [ ] ná í gögn
-- [ ] telja `amount of accidents` í hverri `temperature` og `windspeed`
+- [x] ná í gögn
+- [x] telja `amount of accidents` í hverri `temperature` og `windspeed`
 - [ ] þjálfa model
 - [ ] keyra model á rauntíma veðri
