@@ -1,0 +1,17 @@
+Temperature_Bin,Wind_Speed_Bin,Amount_of_Accidents
+Very Cold,Low,128138
+Very Cold,Moderate,44161
+Very Cold,High,3982
+Very Cold,Very High,288
+Cold,Low,367855
+Cold,Moderate,86328
+Cold,High,6377
+Cold,Very High,472
+Moderate,Low,646737
+Moderate,Moderate,140412
+Moderate,High,7949
+Moderate,Very High,520
+Hot,Low,719764
+Hot,Moderate,244889
+Hot,High,6417
+Hot,Very High,187
