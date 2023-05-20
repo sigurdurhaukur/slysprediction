@@ -1,17 +1,101 @@
 Temperature_Bin,Wind_Speed_Bin,Amount_of_Accidents
-Very Cold,Low,128138
-Very Cold,Moderate,44161
-Very Cold,High,3982
-Very Cold,Very High,288
-Cold,Low,367855
-Cold,Moderate,86328
-Cold,High,6377
-Cold,Very High,472
-Moderate,Low,646737
-Moderate,Moderate,140412
-Moderate,High,7949
-Moderate,Very High,520
-Hot,Low,719764
-Hot,Moderate,244889
-Hot,High,6417
-Hot,Very High,187
+Extremely Cold,No Wind,5175
+Extremely Cold,Very Low,22582
+Extremely Cold,Low,15178
+Extremely Cold,Slightly Low,7546
+Extremely Cold,Moderate Low,3503
+Extremely Cold,Moderate High,1213
+Extremely Cold,Slightly High,414
+Extremely Cold,High,146
+Extremely Cold,Very High,88
+Extremely Cold,Extremely High,28
+Very Cold,No Wind,10728
+Very Cold,Very Low,38569
+Very Cold,Low,24186
+Very Cold,Slightly Low,11877
+Very Cold,Moderate Low,4713
+Very Cold,Moderate High,1642
+Very Cold,Slightly High,507
+Very Cold,High,146
+Very Cold,Very High,57
+Very Cold,Extremely High,29
+Cold,No Wind,19400
+Cold,Very Low,62352
+Cold,Low,34356
+Cold,Slightly Low,15802
+Cold,Moderate Low,6050
+Cold,Moderate High,1915
+Cold,Slightly High,565
+Cold,High,133
+Cold,Very High,74
+Cold,Extremely High,72
+Slightly Cold,No Wind,33567
+Slightly Cold,Very Low,100558
+Slightly Cold,Low,50086
+Slightly Cold,Slightly Low,21627
+Slightly Cold,Moderate Low,8282
+Slightly Cold,Moderate High,2858
+Slightly Cold,Slightly High,772
+Slightly Cold,High,257
+Slightly Cold,Very High,122
+Slightly Cold,Extremely High,81
+Moderate Cold,No Wind,45003
+Moderate Cold,Very Low,140630
+Moderate Cold,Low,69535
+Moderate Cold,Slightly Low,27068
+Moderate Cold,Moderate Low,9394
+Moderate Cold,Moderate High,2987
+Moderate Cold,Slightly High,830
+Moderate Cold,High,223
+Moderate Cold,Very High,163
+Moderate Cold,Extremely High,76
+Moderate Hot,No Wind,46526
+Moderate Hot,Very Low,162833
+Moderate Hot,Low,85158
+Moderate Hot,Slightly Low,32693
+Moderate Hot,Moderate Low,10247
+Moderate Hot,Moderate High,3048
+Moderate Hot,Slightly High,797
+Moderate Hot,High,182
+Moderate Hot,Very High,116
+Moderate Hot,Extremely High,47
+Slightly Hot,No Wind,43767
+Slightly Hot,Very Low,181655
+Slightly Hot,Low,111974
+Slightly Hot,Slightly Low,39306
+Slightly Hot,Moderate Low,10643
+Slightly Hot,Moderate High,2594
+Slightly Hot,Slightly High,565
+Slightly Hot,High,173
+Slightly Hot,Very High,52
+Slightly Hot,Extremely High,35
+Hot,No Wind,25962
+Hot,Very Low,136080
+Hot,Low,108061
+Hot,Slightly Low,41564
+Hot,Moderate Low,9824
+Hot,Moderate High,2018
+Hot,Slightly High,310
+Hot,High,45
+Hot,Very High,24
+Hot,Extremely High,17
+Very Hot,No Wind,9247
+Very Hot,Very Low,56383
+Very Hot,Low,51595
+Very Hot,Slightly Low,19331
+Very Hot,Moderate Low,3536
+Very Hot,Moderate High,534
+Very Hot,Slightly High,75
+Very Hot,High,29
+Very Hot,Very High,5
+Very Hot,Extremely High,7
+Extremely Hot,No Wind,1484
+Extremely Hot,Very Low,9295
+Extremely Hot,Low,8927
+Extremely Hot,Slightly Low,3273
+Extremely Hot,Moderate Low,717
+Extremely Hot,Moderate High,99
+Extremely Hot,Slightly High,19
+Extremely Hot,High,3
+Extremely Hot,Very High,0
+Extremely Hot,Extremely High,0
