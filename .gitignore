@@ -1,6 +1,6 @@
 # ignore data
-US-data.csv
-US-data.zip
+**US-data.csv
+**US-data.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
