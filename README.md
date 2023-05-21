@@ -49,10 +49,6 @@ The Us model has a validation score of 94%, which means that it is very good at 
 
 ![graph of accidents vs time](./accidents/accidents-over-time.png)
 
-Our model
-
-![isl model](./isl_model.png)
-
 ## Conclusion
 
 Modeling the amount of car accidents based off of the temperature and wind-speed is possible.
