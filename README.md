@@ -47,8 +47,6 @@ The table below shows the statistics of the model.
 
 The Us model has a validation score of 94%, which means that it is very good at generalizing to new data. It predicts the amount of accidents in the month based on its average temperature and wind-speed. The model is statistically significant, which means that it is better than a model that just predicts the average amount of accidents per month.
 
-<img src="./figures/accidents-over-time.png" width="50%">
-
 ## Conclusion
 
 Modeling the amount of car accidents based off of the temperature and wind-speed is possible.
