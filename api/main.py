@@ -80,13 +80,18 @@ def predict_isl():
     prediction = isl_model.predict(standardized_new_data)
     prediction_value = prediction[0].item()
 
-    # average accidents per month in Iceland is 246
-    percentage_deviation = (prediction_value - 246) / 246 * 100
+    average_accidents_per_month = 246
+    percentage_deviation = (
+        (prediction_value - average_accidents_per_month)
+        / average_accidents_per_month
+        * 100
+    )
     return {
         "temp": current_average_temperature,
         "wind": current_average_wind_speed,
         "prediction": prediction_value,
         "percentage_deviation": percentage_deviation,
+        "average_accidents_per_month": average_accidents_per_month,
     }
 
 
@@ -156,9 +161,16 @@ def predict_isl():
     prediction = usa_model.predict(input_tensor)  # in log space
     prediction = np.exp(prediction) - 1e-5
 
+    # scale down to 1 month
+    predicted = prediction / 48
+    average_accidents_per_month = 4216.75
     # Print the predicted amount of accidents
-    print(f"Predicted amount of accidents: {prediction.item():.2f}")
-    percentage_deviation = (prediction.item() - 20240.4) / 20240.4 * 100
+    print(f"Predicted amount of accidents: {predicted.item():.2f}")
+    percentage_deviation = (
+        (predicted.item() - average_accidents_per_month)
+        / average_accidents_per_month
+        * 100
+    )
     print(
         "percent deviation from average accidents per month: ",
         str(round(percentage_deviation, 3)) + "%",
@@ -169,4 +181,5 @@ def predict_isl():
         "wind": current_average_wind_speed,
         "prediction": prediction.item(),
         "percent_deviation": percentage_deviation,
+        "average_accidents_per_month": average_accidents_per_month,
     }
