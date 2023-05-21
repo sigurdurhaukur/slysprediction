@@ -6,6 +6,7 @@ from xml.etree import ElementTree as ET
 import torch.nn as nn
 import joblib
 import numpy as np
+import requests
 
 
 def fetch_weather():
@@ -52,62 +53,28 @@ def get_temp_and_wind_speed():
     return average_temperature, average_wind_speed
 
 
-# Load the models
-usa_model = joblib.load("../models/usa-model.pt")
-isl_model = joblib.load("../models/isl-model.pt")
+def get_live_temp_and_wind_speed():
+    url = "https://iws.isavia.is/weather/BIRK"
 
-app = FastAPI()
+    response = requests.get(url)
+    response = response.json()
 
-# Enable CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Replace with appropriate domain(s)
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+    temperature = response["data"]["rwyTdz31"]["tempSurface"]["value"]
+    wind_speed = response["data"]["rwyTdz31"]["windSpeed"]["value"]
+    return temperature, wind_speed
 
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-
-@app.get("/prediction/isl")
-def predict_isl():
-    current_average_temperature, current_average_wind_speed = get_temp_and_wind_speed()
-
+def standardize_input_isl(temperature):
     # standardize input
     x_mean = torch.tensor([4.3893])
     x_std = torch.tensor([4.1323])
 
-    average_temperature = torch.tensor(
-        current_average_temperature, dtype=torch.float32
-    ).reshape(-1, 1)
-    standardized_new_data = (average_temperature - x_mean) / x_std
+    average_temperature = torch.tensor(temperature, dtype=torch.float32).reshape(-1, 1)
 
-    # predict
-    prediction = isl_model.predict(standardized_new_data)
-    prediction_value = prediction[0].item()
-
-    average_accidents_per_month = 246
-    percentage_deviation = (
-        (prediction_value - average_accidents_per_month)
-        / average_accidents_per_month
-        * 100
-    )
-    return {
-        "temp": current_average_temperature,
-        "wind": current_average_wind_speed,
-        "prediction": prediction_value,
-        "percentage_deviation": percentage_deviation,
-        "average_accidents_per_month": average_accidents_per_month,
-    }
+    return (average_temperature - x_mean) / x_std
 
 
-@app.get("/prediction/usa")
-def predict_isl():
-    current_average_temperature, current_average_wind_speed = get_temp_and_wind_speed()
-
+def standardize_input_usa(temperature, wind_speed):
     # standardize input
     # Define the bins for temperature and wind speed
     temperature_bins = [-float("inf"), -5, 0, 5, 10, 15, 20, 25, 30, 35, float("inf")]
@@ -139,16 +106,13 @@ def predict_isl():
         "Extremely High",
     ]
 
-    current_temperature = 15
-    current_wind_speed = 10
-
     # Encode the current temperature and wind speed values into one-hot encoding
     temperature_index = next(
-        (i for i, bin in enumerate(temperature_bins) if current_temperature <= bin),
+        (i for i, bin in enumerate(temperature_bins) if temperature <= bin),
         len(temperature_bins) - 1,
     )
     wind_speed_index = next(
-        (i for i, bin in enumerate(wind_speed_bins) if current_wind_speed <= bin)
+        (i for i, bin in enumerate(wind_speed_bins) if wind_speed <= bin)
     )
 
     # hacky way to solve out of index error
@@ -164,6 +128,129 @@ def predict_isl():
     # Combine the encoded values into a single input tensor
     input_tensor = torch.tensor(
         [encoded_temperature + encoded_wind_speed], dtype=torch.float32
+    )
+
+    return input_tensor
+
+
+# Load the models
+usa_model = joblib.load("../models/usa-model.pt")
+isl_model = joblib.load("../models/isl-model.pt")
+
+
+app = FastAPI()
+
+# Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Replace with appropriate domain(s)
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+# for more frequent updates
+@app.get("/prediction/isl/live")
+def predict_isl_live():
+    live_temperature, live_wind_speed = get_live_temp_and_wind_speed()
+
+    if live_temperature and live_wind_speed:
+        standardized_new_data = standardize_input_isl(live_temperature)
+
+        # predict
+        prediction = isl_model.predict(standardized_new_data)
+        prediction_value = prediction[0].item()
+
+        average_accidents_per_month = 246
+        percentage_deviation = (
+            (prediction_value - average_accidents_per_month)
+            / average_accidents_per_month
+            * 100
+        )
+    else:
+        live_temperature = None
+        live_wind_speed = None
+        prediction_value = None
+        percentage_deviation = None
+        average_accidents_per_month = None
+    return {
+        "temp": live_temperature,
+        "wind": live_wind_speed,
+        "prediction": prediction_value,
+        "percentage_deviation": percentage_deviation,
+        "average_accidents_per_month": average_accidents_per_month,
+    }
+
+
+# for more frequent updates
+@app.get("/prediction/usa/live")
+def predict_isl_live():
+    live_temperature, live_wind_speed = get_live_temp_and_wind_speed()
+
+    if live_temperature and live_wind_speed:
+        input_tensor = standardize_input_usa(live_temperature, live_wind_speed)
+
+        # Make the prediction using the trained model
+        prediction = usa_model.predict(input_tensor)  # in log space
+        prediction = np.exp(prediction) - 1e-5
+
+        # scale down to 1 month
+        predicted = prediction / 48
+        average_accidents_per_month = 4216.75
+        # Print the predicted amount of accidents
+        percentage_deviation = (
+            (predicted.item() - average_accidents_per_month)
+            / average_accidents_per_month
+            * 100
+        )
+
+        prediction_value = predicted.item()
+    else:
+        live_temperature = None
+        live_wind_speed = None
+        prediction_value = None
+        percentage_deviation = None
+        average_accidents_per_month = None
+    return {
+        "temp": live_temperature,
+        "wind": live_wind_speed,
+        "prediction": prediction_value,
+        "percentage_deviation": percentage_deviation,
+        "average_accidents_per_month": average_accidents_per_month,
+    }
+
+
+@app.get("/prediction/isl")
+def predict_isl():
+    current_average_temperature, current_average_wind_speed = get_temp_and_wind_speed()
+
+    standardized_new_data = standardize_input_isl(current_average_temperature)
+
+    # predict
+    prediction = isl_model.predict(standardized_new_data)
+    prediction_value = prediction[0].item()
+
+    average_accidents_per_month = 246
+    percentage_deviation = (
+        (prediction_value - average_accidents_per_month)
+        / average_accidents_per_month
+        * 100
+    )
+    return {
+        "temp": current_average_temperature,
+        "wind": current_average_wind_speed,
+        "prediction": prediction_value,
+        "percentage_deviation": percentage_deviation,
+        "average_accidents_per_month": average_accidents_per_month,
+    }
+
+
+@app.get("/prediction/usa")
+def predict_isl():
+    current_average_temperature, current_average_wind_speed = get_temp_and_wind_speed()
+
+    input_tensor = standardize_input_usa(
+        current_average_temperature, current_average_wind_speed
     )
 
     # Make the prediction using the trained model
@@ -189,6 +276,6 @@ def predict_isl():
         "temp": current_average_temperature,
         "wind": current_average_wind_speed,
         "prediction": prediction.item(),
-        "percent_deviation": percentage_deviation,
+        "percentage_deviation": percentage_deviation,
         "average_accidents_per_month": average_accidents_per_month,
     }

@@ -1,6 +1,27 @@
+/* sanitize */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 main {
   padding: 1em;
-  max-width: 80rem;
+  max-width: 40rem;
 
-  margin: 0 auto;
+  margin: 2em auto;
+}
+
+h1 {
+  /* font-size: 3em; */
+  margin-bottom: 1em;
+}
+h5 {
+  margin: 0.5em 0;
+  font-size: 2em;
+}
+
+.card-text {
+  line-height: 1.5em;
 }

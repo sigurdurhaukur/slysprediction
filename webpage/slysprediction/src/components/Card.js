@@ -12,8 +12,8 @@ export default function Card({
         <p className="card-text">
           Fjöldi slysa í mánuðnum: {prediction} <br />
           Prósentu frávik frá meðaltali: {percentage_deviation}% <br />
-          Rauntíma hitastig: {temperature} <br />
-          Rauntíma vindhraði: {windSpeed}
+          Rauntíma hitastig: {temperature} &deg;C <br />
+          Rauntíma vindhraði: {windSpeed} m/s
         </p>
       </div>
     </div>
