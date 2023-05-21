@@ -1,5 +1,11 @@
 to run the server
 
+install the packages
+
+```bash
+pip install -r requirements.txt
+```
+
 ```bash
 uvicorn main:app --reload
 ```

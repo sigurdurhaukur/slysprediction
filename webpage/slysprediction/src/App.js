@@ -50,7 +50,7 @@ function App() {
     <div className="App">
       <main>
         <h1>
-          Slysamat með gervigreind, útfrá við rauntíma veðri (hitastigi og
+          Slysamat með gervigreind, útfrá rauntíma veðri (hitastigi og
           vindhraða)
         </h1>
         {islData && (
