@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import torch
 import requests
 from xml.etree import ElementTree as ET
@@ -56,6 +57,14 @@ usa_model = joblib.load("../models/usa-model.pt")
 isl_model = joblib.load("../models/isl-model.pt")
 
 app = FastAPI()
+
+# Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Replace with appropriate domain(s)
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
