@@ -10,17 +10,17 @@ The weather data is in the `weather` folder and the accident data is in the `acc
 
 There seems to be a correlation between the amount of accidents and the average temperature. The graph below shows the amount of accidents per month in Iceland from 2009 to 2023. The graph is very noisy, but it seems like there is a correlation between the amount of accidents and the average temperature. We can also see the seasonality of accidents in Iceland in the graph of amount of accidents against time. This is probably because of the snow and ice on the roads.
 
-![graph of accidents vs temperature](./figures/isl_accidents-against-temp.png)
+<img src="./figures/isl_accidents-against-temp.png" width="50%">
 
-![graph of accidents vs time](./figures/accidents-over-time.png)
+<img src="./figures/accidents-over-time.png" width="50%">
 
 The dataset from Kaggle, US Accidents (2016 - 2021), shows a clear correlation between the amount of accidents and the average temperature at the time of the accident. See the graph below. The trend is not linear, the data forms a curve. That's why we trained the model on the log of the temperature.
 
-![graph of accidents vs temperature](./figures/accidents-for-temp.png)
+<img src="./figures/accidents-for-temp.png" width="50%">
 
 The graph below shows the amount of accidents and the wind-speed at the time of the accident. There seems to be a correlation between the amount of accidents and the wind-speed. The graph does not contain as many datapoints, but there is a correlation between the amount of accidents and the wind-speed.
 
-![graph of accidents vs wind-speed](./figures/accidents-for-wind.png)
+<img src="./figures/accidents-for-wind.png" width="50%">
 
 ## The models
 
@@ -32,7 +32,7 @@ We trained two models. One for the Icelandic data and one for the US data. Both 
 
 Below is a figure of the Icelandic model. The model is statistically significant, but the R-squared score is low. This means that the model is not a good fit for the data. The cross-validation scores are also low, which means that the model is not good at generalizing to new data. However, the model is still statistically significant, which means that it is better than a model that just predicts the average amount of accidents per month. The data it was trained on is also very noisy, which makes it harder to train a good model, especially because the data points are so few.
 
-![icelandic model](./figures/isl-model.png)
+<img src="./figures/isl-model.png" width="50%">
 
 The table below shows the statistics of the model.
 
@@ -47,7 +47,7 @@ The table below shows the statistics of the model.
 
 The Us model has a validation score of 94%, which means that it is very good at generalizing to new data. It predicts the amount of accidents in the month based on its average temperature and wind-speed. The model is statistically significant, which means that it is better than a model that just predicts the average amount of accidents per month.
 
-![graph of accidents vs time](./accidents/accidents-over-time.png)
+<img src="./accidents/accidents-over-time.png" width="50%">
 
 ## Conclusion
 
