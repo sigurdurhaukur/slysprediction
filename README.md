@@ -1,6 +1,6 @@
 # Predicting the amount of accidents in the month based on its average temperature and wind-speed
 
-authors: Tómas, Gunnar, Sigurdur Haukur
+authors: Tómas, [Gunnar](https://www.linkedin.com/in/gunnarbjo/), [Sigurdur Haukur](https://www.linkedin.com/in/sigurdur-haukur-birgisson/)
 
 ## The data
 
