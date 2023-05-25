@@ -184,7 +184,7 @@ def predict_isl_live():
 
 # for more frequent updates
 @app.get("/prediction/usa/live")
-def predict_isl_live():
+def predict_usa_live():
     live_temperature, live_wind_speed = get_live_temp_and_wind_speed()
 
     if live_temperature and live_wind_speed:
@@ -196,7 +196,7 @@ def predict_isl_live():
 
         # scale down to 1 month
         predicted = prediction / 48
-        average_accidents_per_month = 4216.75
+        average_accidents_per_month = 421.675
         # Print the predicted amount of accidents
         percentage_deviation = (
             (predicted.item() - average_accidents_per_month)
@@ -246,7 +246,7 @@ def predict_isl():
 
 
 @app.get("/prediction/usa")
-def predict_isl():
+def predict_usa():
     current_average_temperature, current_average_wind_speed = get_temp_and_wind_speed()
 
     input_tensor = standardize_input_usa(
@@ -259,7 +259,7 @@ def predict_isl():
 
     # scale down to 1 month
     predicted = prediction / 48
-    average_accidents_per_month = 4216.75
+    average_accidents_per_month = 421.675
     # Print the predicted amount of accidents
     print(f"Predicted amount of accidents: {predicted.item():.2f}")
     percentage_deviation = (
