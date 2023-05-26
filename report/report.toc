@@ -2,10 +2,10 @@
 \contentsline {section}{\numberline {2}Methodology}{3}{}%
 \contentsline {subsection}{\numberline {2.1}Data Collection}{3}{}%
 \contentsline {subsection}{\numberline {2.2}Data Preprocessing}{3}{}%
-\contentsline {subsection}{\numberline {2.3}Statistical Analysis}{3}{}%
+\contentsline {subsection}{\numberline {2.3}Statistical Analysis}{4}{}%
 \contentsline {subsection}{\numberline {2.4}Machine Learning Techniques}{7}{}%
 \contentsline {section}{\numberline {3}Results and Analysis}{8}{}%
-\contentsline {subsection}{\numberline {3.1}Linear Regression Results (Iceland Dataset)}{8}{}%
-\contentsline {subsection}{\numberline {3.2}Random Forest Regression Results (USA Dataset)}{10}{}%
+\contentsline {subsection}{\numberline {3.1}Linear Regression Results (Iceland Dataset)}{9}{}%
+\contentsline {subsection}{\numberline {3.2}Random Forest Regression Results (USA Dataset)}{9}{}%
 \contentsline {section}{\numberline {4}Discussion}{13}{}%
 \contentsline {section}{\numberline {5}Conclusion}{13}{}%

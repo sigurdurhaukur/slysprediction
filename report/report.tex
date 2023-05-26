@@ -1,10 +1,14 @@
 \documentclass{article}
 \usepackage{graphicx}
 \usepackage[T1]{fontenc}
+\usepackage{authblk}
 
 \title{Forecasting Road Safety: Harnessing Weather Data to Predict Car Accidents}
 
-\author{Gunnar Þrastarson, Sigurdur Haukur Birgisson, and Tómas Blær}
+\author{
+  Gunnar Þrastarson \and Sigurdur Haukur Birgisson \and Tómas Blær Guðmundsson 
+}
+
 \date{May 2023}
 
 \begin{document}
@@ -31,7 +35,12 @@ In summary, this research investigates the feasibility of predicting the average
 \newpage
 \section{Methodology}
 
-The methodology employed in this research study involves data collection, data preprocessing, and the utilization of machine learning techniques to predict the average amount of car accidents based on weather conditions. Two datasets, the Iceland Dataset and the USA Dataset \cite{usa_data}, were utilized for this purpose.
+To investigate the possibility of predicting the average amount of car accidents in Iceland based on current weather conditions, a machine learning approach was utilized.
+
+We trained a model using historical weather data from the Icelandic Meteorological Office \cite{isl_weather_data} and car accident data from the Icelandic Road and Coastal Administration \cite{isl_accident_data}. The model was trained to predict the average amount of car accidents based on the average temperature for each month. The model was then evaluated using the testing set, and the results were analyzed to determine the predictive capabilities of the model.
+
+As a proof of concept, we also trained a model using a comprehensive dataset from the United States \cite{usa_data}. This dataset included temperature and wind speed measurements recorded at the time of each car accident. The model was trained to predict the average amount of car accidents based on the average temperature and wind speed for each month. The model was then evaluated using the testing set, and the results were analyzed to determine the predictive capabilities of the model.
+
 
 \subsection{Data Collection}
 
@@ -88,7 +97,7 @@ The amount of car accidents was plotted against time to see if there were any te
 \end{figure}
 
 
-There is a correlation between the amount of car accidents and temperature, with more accidents occurring at lower temperatures. However, it is important to note that the data points are spread out, indicating a high degree of variance or noise. This variance is likely due to the limited amount of data available, as well as the presence of other factors that influence accident rates, such as road conditions and driver behavior.
+There was a correlation between the amount of car accidents and temperature, with more accidents occurring at lower temperatures. However, it is important to note that the data points are spread out, indicating a high degree of variance or noise. This variance is likely due to the limited amount of data available, as well as the presence of other factors that influence accident rates, such as road conditions and driver behavior.
 
 The same trend can be seen for the USA Dataset, but clearer. Since, it has more data points. The plots for the USA Dataset are presented in Figures \ref{fig:usa_accidents_over_time} and \ref{fig:usa_accidents_vs_temp}.
 
@@ -107,7 +116,7 @@ The same trend can be seen for the USA Dataset, but clearer. Since, it has more 
     \label{fig:usa_accidents_vs_temp}
 \end{figure}
 
-It is important to  note that most accidents in the US, occur at temperatures around 20 degrees. Because, many of the accidents happen in urban areas where there is a lot of traffic. This is also present in the Iceland Dataset, but not as clear. This is likely due to the limited amount of data available for Iceland, and the fact that there is less traffic in Iceland.
+It is important to note that most accidents in the US, occurred at temperatures around 20 degrees. Because, many of these accidents happen in urban areas where there is a lot of traffic. This is also present in the Iceland Dataset, but not as clear. This is likely due to the limited amount of data available for Iceland, and the fact that there is less traffic in Iceland.
 
 As mentioned before, the USA Dataset also included wind speed data. Therefore, the relationship between wind speed and car accidents was also examined. The amount of car accidents was plotted against wind speed to visualize the relationship between these two variables. This plot is presented in Figure \ref{fig:usa_accidents_vs_wind}.
 
@@ -119,9 +128,9 @@ As mentioned before, the USA Dataset also included wind speed data. Therefore, t
 \end{figure}
 
 
-The plot indicates a slight correlation between wind speed and car accidents, with more accidents occurring at higher wind speeds. However, there is a limited amount of data available for the higher wind speeds. It seems that most accidents occur at wind speeds below 10 m/s. This is likely due to the fact that most accidents occur in urban areas where there is less wind.
+The plot indicates a slight correlation between wind speed and car accidents, with more accidents occurring at higher wind speeds. However, there was limited amount of data available for the higher wind speeds. It seems that most accidents occur at wind speeds below 10 m/s. This is likely due to the fact that most accidents occur in urban areas where there is less wind.
 
-Visualizing the effect of temperature and wind speed on car accidents at the same time is difficult. Therefore, a heatmap was created to visualize the relationship between these three variables. This heatmap is presented in Figure \ref{fig:usa_heatmap}.
+Heatmap was created to visualize the relationship between the amount of car accidents, temperature, and wind speed. The heatmap is presented in Figure \ref{fig:usa_heatmap}.
 
 \begin{figure}
     \centering
@@ -245,32 +254,28 @@ Viewing the same graph, but on only the temperature  and the wind speed axis and
 
 Overall, the random forest regression model demonstrates strong generalization capabilities to new data. However, further analysis and consideration of additional factors may be required to improve the model's ability to explain a larger proportion of the variance in car accidents and enhance its predictive accuracy.
 
+
+Since, both models performed reasonably well on the validation set, they can be used to predict the amount of accidents in for a given month based on it's average temperature and wind speed. Or to predict the amount of accidents in the current month, based of current temperature and wind speed. However, the random forest regression model is more accurate, since it can understand the effect of temperature and wind speed.
+
 \newpage
 \section{Discussion}
 
 The discussion section of this research paper highlights the study's limitations and proposes future research directions. It is important to consider these limitations when interpreting the findings.
 
-One limitation is that the analysis focused solely on the relationship between temperature and car accidents, neglecting other variables that may influence accident rates, such as rainfall, snowfall, road conditions, visibility, and driver behavior. Incorporating these variables in future research would provide a more comprehensive understanding and improve predictive models.
+One limitation is that the analysis focused solely on the relationship between temperature snf wind speed on the amount of car accidents, neglecting other variables that may influence accident rates, such as rainfall, snowfall, road conditions, visibility, traffic, and driver behavior. Incorporating these variables in future research would provide a more comprehensive understanding and improve predictive models.
 
-Another limitation is the limited amount of data available for the study, which focused on Iceland. To enhance generalizability, future studies should expand the dataset by including data from multiple regions with diverse weather conditions and driving environments.
-
-Additionally, the findings may not be applicable on a global scale since the datasets used were specific to Iceland. Future research should consider incorporating datasets from different geographical regions to capture global patterns and gain a more comprehensive understanding of the relationship between weather conditions and car accidents worldwide.
-
-Future work should include the inclusion of additional variables, expansion to different geographical regions and diverse weather conditions, and longitudinal studies covering extended periods. Utilizing advanced modeling techniques, such as machine learning algorithms, can also enhance the accuracy of predictive models and uncover complex relationships.
+Future work should include the inclusion of additional variables, expansion to different geographical regions and diverse weather conditions, and longitudinal studies covering extended periods.
 
 By addressing these limitations and pursuing the suggested future research directions, researchers can contribute to a comprehensive understanding of the relationship between weather conditions and car accidents. This knowledge can inform the development of effective strategies for accident prevention, road safety measures, and weather-based warning systems, ultimately promoting safer driving practices and reducing the frequency and severity of car accidents.
 
 
 \section{Conclusion}
 
-In conclusion, this research study aimed to investigate the feasibility of predicting the average amount of car accidents in Iceland based on current weather conditions. Despite the limitations of the available data and the absence of wind speed information for Iceland, the study provided valuable insights into the relationship between weather conditions and car accidents.
+In conclusion, the findings indicate that temperature and wind speed are significant predictors of car accidents, and that these variables can be used to predict the average amount of car accidents. We successfully trained a linear regression model that is capable of predicting the amount of car accidents in Iceland, based solely on current air temperature, to a reasonable degree of accuracy. We also demonstrated that with higher data quality, it is possible to train a Random Forest Regression model to predict with high accuracy the amount of car accidents based on current temperature and wind speed.
 
-The findings emphasize the potential of utilizing weather conditions to predict car accidents and enhance road safety. By incorporating additional variables, expanding geographical coverage, and employing advanced modeling techniques, future research can further improve predictive models and uncover complex relationships between weather conditions and car accidents.
+The findings of this study can inform the development of effective strategies for accident prevention, road safety measures, and weather-based warning systems, ultimately promoting safer driving and reducing the frequency and severity of car accidents.
 
-The limitations of this study, including the focus on temperature as the sole weather variable and the limited dataset availability, should be considered when interpreting the findings. Future research should incorporate other influential variables, encompass diverse geographical regions, and conduct longitudinal studies to capture long-term trends and temporal patterns.
-
-Overall, this research contributes to the understanding of the relationship between weather conditions and car accidents, paving the way for the development of proactive strategies to enhance road safety. By leveraging predictive models and weather-based warning systems, it becomes possible to mitigate risks associated with adverse weather conditions, promote safer driving practices, and ultimately reduce the frequency and severity of car accidents.
-
+\newpage
 \bibliography{references}
 \bibliographystyle{plain}
 
