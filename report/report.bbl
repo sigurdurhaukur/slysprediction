@@ -1,0 +1,28 @@
+\begin{thebibliography}{1}
+
+\bibitem{isl_weather_data}
+Icelandic Meteorological Office.
+
+\bibitem{isl_accident_data}
+Icelandic Transport Authority.
+
+\bibitem{linear_regression}
+Naomi Altman and Martin Krzywinski.
+\newblock Simple linear regression.
+\newblock {\em Nature Methods}, 12(11):999--1000, 2015.
+
+\bibitem{random_forest_regression}
+Tin~Kam Ho.
+\newblock Random decision forests.
+\newblock In {\em Proceedings of the 3rd International Conference on Document
+  Analysis and Recognition}, pages 278--282, Montreal, QC, August 1995.
+
+\bibitem{usa_data}
+Sobhan Moosavi, Mohammad~Hossein Samavatian, Srinivasan Parthasarathy, and
+  Rajiv Ramnath.
+\newblock Us accidents (2016 - 2021).
+\newblock Dataset, 2019.
+\newblock Available at:
+  [https://www.kaggle.com/datasets/sobhanmoosavi/us-accidents].
+
+\end{thebibliography}

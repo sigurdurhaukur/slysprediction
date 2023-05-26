@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: report.aux
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+Reallocating 'name_of_file' (item size: 1) to 6 items.
+The style file: plain.bst
+Database file #1: references.bib
+Warning--to sort, need author or key in isl_weather_data
+Warning--to sort, need author or key in isl_accident_data
+You've used 5 entries,
+            2118 wiz_defined-function locations,
+            523 strings with 4583 characters,
+and the built_in function-call counts, 1395 in all, are:
+= -- 138
+> -- 45
+< -- 1
++ -- 19
+- -- 14
+* -- 81
+:= -- 205
+add.period$ -- 12
+call.type$ -- 5
+change.case$ -- 20
+chr.to.int$ -- 0
+cite$ -- 7
+duplicate$ -- 55
+empty$ -- 136
+format.name$ -- 14
+if$ -- 312
+int.to.chr$ -- 0
+int.to.str$ -- 5
+missing$ -- 2
+newline$ -- 25
+num.names$ -- 6
+pop$ -- 39
+preamble$ -- 1
+purify$ -- 17
+quote$ -- 0
+skip$ -- 50
+stack$ -- 0
+substring$ -- 85
+swap$ -- 14
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 20
+warning$ -- 2
+while$ -- 11
+width$ -- 6
+write$ -- 47
+(There were 2 warnings)
